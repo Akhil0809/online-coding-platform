@@ -19,7 +19,9 @@ console.log("begin");
 
 
 
-mongoose.connect('mongodb+srv://Akhil:Jhanvi1998@@cluster0-vxz1d.mongodb.net/miniproject?retryWrites=true&w=majority');
+var mongoConnection = 'mongodb+srv://Akhil:Jhanvi1998@cluster0-vxz1d.mongodb.net/miniproject?retryWrites=true&w=majority';
+
+mongoose.connect(mongoConnection, {useNewUrlParser: true});
 
 
 
