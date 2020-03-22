@@ -1,0 +1,401 @@
+.modal-dialog.login-modal {
+    width: 380px;
+}
+.login-modal .modal-header {
+    padding: 5px 15px;
+}
+.login-modal h4#myModalLabel {
+    font-size: 14px;
+}
+.login-modal .modal-header .close span {
+    color: #000;
+    opacity: 1;
+}
+.enter_credentials input.form-control {
+    height: 27px;
+}
+.enter_credentials label {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.enter_credentials {
+    float: none;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.enter-credentoals-inner input.btn.btn-primary {
+    background: #029cee;
+    border-color: #029cee;
+    font-size: 12px;
+    padding: 4px 10px;
+}
+.submit-btn {
+    float: right;
+}
+
+.enter-credentoals-inner {
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+form.form-style {
+    float: left;
+    width: 100%;
+}
+.enter-credentoals-inner h4 {
+    font-size: 15px;
+    color: #000;
+    margin-top: 0px;
+}
+.enter-credentoals-inner .form-group {
+    margin-bottom: 8px;
+}
+
+nav.navbar.navbar-default.my-head .navbar-nav>li>a {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+nav.navbar.navbar-default.my-head{
+    min-height: auto;
+}
+p.navbar-brand.header-style {
+    margin-bottom: 0px;
+    height: auto;
+    padding: 5px;
+    font-size: 15px;
+}
+.alert.alert-info.alert-dismissible.fade.in {
+    position: absolute;
+    right: 20px;
+    width: 260px;
+    max-width: 210px;
+    padding: 10p;
+    top: 40px;
+}
+
+
+html,body {
+    margin:0;
+    padding:0;
+    height:100%; /* needed for container min-height */
+}
+
+.my-footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    padding: 5px 0;
+    z-index: 9;
+}
+.CodeMirror-gutter.CodeMirror-linenumbers {
+    background: #3d3e46;
+    padding-right: 8px;
+    height: 100vh;
+}
+p.copyright {
+    float: right;
+}
+.email-address {
+    float: left;
+}
+
+.page-header {
+    padding-bottom: 0 !important;
+    margin: 0 0 17px !important;
+}
+.page-header ul.breadcrumb {
+    padding: 0 10px;
+}
+p {
+    font-size: 14px;
+}
+.list-item-style {
+    height: auto;
+}
+.list-item-style h4 {
+    margin: 0px;
+    font-size: 16px;
+}
+a.btn.btn-default.list-btn-style {
+    margin: 0px;
+    padding: 1px 10px;
+    font-size: 13px;
+}
+nav.navbar.navbar-default.custom-head li.active a , nav.navbar.navbar-default.custom-head li a:hover {
+    color: #fff;
+    background-color: #029cee;
+}
+
+nav.navbar.navbar-default.custom-head {
+    min-height: auto;
+    margin-bottom: 8px;
+}
+
+nav.navbar.navbar-default.custom-head .navbar-nav>li>a {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+
+
+.problem-inner {
+    background: #fff;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+.problem-inner p span {
+    float: left;
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.problem-inner p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #666;
+}
+.editor1 {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
+}
+p.note {
+    color: #fff;
+    font-size: 10px;
+    padding: 6px 0 0;
+    margin: 0px;
+}
+
+.compiler {
+    float: left;
+    width: 100%;
+    margin-bottom: 13px;
+}
+
+.compiler h5 {
+    font-size: 13px;
+    margin-top: 0px;
+}
+.take-test {
+    border: 1px solid #ccc;
+    padding: 20px;
+    float: left;
+    width: 100%;
+    margin: 30px 0 0;
+}
+.take-test h3 {
+    margin-top: 0px;
+}
+
+.data-structure {
+    float: left;
+    width: 100%;
+    background: #3c555f;
+    padding: 1px 20px;
+    margin: 10px 0 0 0;
+}
+
+.list-group.list-style.killing {
+    float: left;
+    width: 100%;
+    margin: 30px 0 0;
+    margin-bottom: 18px;
+}
+
+.container.no-test {
+    border: 1px solid #ccc;
+    padding: 20px;
+    float: none;
+    margin-top: 10px;
+}
+a.submit-test {
+    background: #7142a2;
+    color: #fff;
+    font-size: 13px;
+    border: 1px solid #3c555f;
+    padding: 3px 7px;
+    float: none;
+    margin-top: 10px;
+}
+p.timer {
+    font-size: 18px;
+    margin-top: auto;
+    color: #5bff8f;
+    float: right;
+    margin-bottom: 0px;
+}
+
+  h3.timerclass {
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-right: 0;
+    height: auto;
+    font-size: 17px;
+}
+.headerName {
+    width: 100%;
+    margin: 0 auto;
+    background: #3c555f;
+    padding: 7px 8px;
+    margin-top: 0px;
+}
+
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 11%;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 5px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background-color: #8c8f90;
+    color: #ffff;
+}
+  /* Style the tab content */
+  .tabcontent {
+    float: left;
+    width: 89%;
+    border-left: none;
+  }
+  
+  .tabcontent p {
+      font-size: 13px;
+  }
+
+  .tabcontent .list-group.list-style.killing {
+    margin: 0;
+}
+
+.quesrion-scroll {
+    float: left;
+    width: 100%;
+    max-height: 451px;
+    overflow-y: auto;
+}
+.tabs-area {
+    float: left;
+    width: 100%;
+    margin-bottom: 28px;
+    display: table;
+}
+.tabs-area .compiler {
+    margin-bottom: 0px;
+}
+.compiler-btn .btn-primary {
+    padding: 3px 7px;
+    font-size: 12px;
+}
+
+.question-submit {
+    float: none;
+    width: 100%;
+    margin: 10px 0 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tabcontent p.note {
+    font-size: 11px;
+}
+
+.tabs-area .container {
+    width: 100%;
+}
+
+span#demo {
+    padding-left:11px;
+}
+
+div#result {
+    margin: 10px 0 0;
+}
+
+div#result, div#resoutput {
+    width: 100%;
+    padding: 0 10px;
+    font-size: 15px;
+    background: #000;
+    color: #efc83a;
+}
+ div#resoutput {
+    margin-bottom: 40px;
+}
+age-container {
+    margin: 20px;
+  }
+  
+  
+  /* horizontal panel*/
+  
+  .panel-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid silver;
+    overflow: hidden;
+    
+    /* avoid browser level touch actions */
+  }
+  
+  .panel-left {
+    flex: 0 0 auto;
+    padding: 10px;
+    width: 470px;
+    min-height: 200px;
+    min-width: 250px;
+}
+  
+  .splitter {
+    flex: 0 0 auto;
+    width: 18px;  
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+    min-height: 200px;
+    cursor: col-resize;  
+  }
+  
+  .panel-right {
+    flex: 1 1 auto;
+    padding: 10px;
+    width: 100%;
+    min-height: 200px;
+    min-width: 200px;
+    background: #eee;
+  }
+  
+  .editor1 .CodeMirror {
+    height: 255px;
+}
+  

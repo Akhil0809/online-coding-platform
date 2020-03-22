@@ -1,0 +1,200 @@
+<%- include('../../Partials/layout.ejs') %>
+<%- include('../../Partials/timer.ejs') %>
+  <div class="container-fluid">
+    <div class="tabs-area">
+      <div class="tab">
+          <%for(i=0;i<data.questionlist.length;i++){%>
+            <button class="tablinks" onclick="openCity(event, `<%- i %>`, `<%- data.questionlist[i].qname %>`, `<%- data.questionlist[i].qcode.problem %>`, `<%- data.questionlist[i].qcode.inputformat %>`, `<%- data.questionlist[i].qcode.outputformat %>`, `<%- data.questionlist[i].qcode.constraints %>`)"><%- data.questionlist[i].qname %></button>
+          <%}%>
+      </div>
+              
+      <div class="tabcontent">
+          <div class="killing" >
+              <div class="page-container">
+                  <div class="panel-container">
+                      <div class="panel-left">
+                          <div>
+                              <div class="quesrion-scroll">
+                                <p id="problem" class=""><%- data.questionlist[0].qcode.problem %></p>
+                                <p><span><strong>Sample Input</strong></span></p>
+                                <p id="inputformat" class=""><%- data.questionlist[0].qcode.inputformat %></p>
+                                <p><span><strong>Sample Output</strong></span></p>
+                                <p id="outputformat" class=""><%- data.questionlist[0].qcode.outputformat %>></p>
+                                <p><span><strong>Constraints</strong></span></p>
+                                <p id="constraints" class=""><%- data.questionlist[0].qcode.constraints %></p>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="splitter">
+                      </div>
+                      <div class="panel-right">
+                          <%- include('../../Partials/compiler.ejs') %>
+                          <div id="result"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>        
+      <div class="question-submit"><a class="submit-test btn btn-primary" href="/SubmitTest" type="button">Submit Test</a></div>  
+    </div>
+  </div>
+
+
+
+  <%- include('../../Partials/layoutfooter.ejs') %>
+  <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+  <!-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> -->
+  <script src="/scripts/codemirror/lib/codemirror.js"></script>
+  <link href="/scripts/codemirror/lib/codemirror.css" rel="stylesheet"/>
+  <script src="/scripts/codemirror/mode/python/python.js"></script>
+  <script src="/scripts/codemirror/mode/clike/clike.js"></script>
+  <link href="/scripts/codemirror/theme/dracula.css" rel="stylesheet"/>
+  <script src="/scripts/codemirror/addon/edit/closetag.js"></script>
+  <script src="/scripts/codemirror/addon/edit/closebrackets.js"></script>
+  <script src="/scripts/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="/scripts/codemirror/addon/edit/matchtags.js"></script>
+  <script src="/scripts/codemirror/addon/hint/show-hint.js"></script>
+  <script src="/scripts/codemirror/addon/hint/css-hint.js"></script>
+  <link href="/scripts/codemirror/addon/hint/show-hint.css" rel="stylesheet"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://rawgit.com/RickStrahl/jquery-resizable/master/src/jquery-resizable.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+  <script>
+    var selectedQuestion = 0 ;
+    var exam = `<%- data.examname %>`;
+    var section = `<%- data.sectionname %>`;
+    var userId = `<%= user %>`;
+    var question = `<%- data.questionlist[0].qname %>`;
+
+      $(function(){
+          $(".static_class").click(function(){
+            if($(this).val() === "Yes")
+              $("#extra").show("fast");
+            else
+              $("#extra").hide("fast");
+          });
+        });
+      var editor = CodeMirror.fromTextArea
+      (document.getElementById('editor'),{
+          theme:"dracula",
+          lineNumbers: true,
+          autoCloseTags: true,
+          matchBrackets: true,
+          autoCloseBrackets: true,
+          matchTags: false,
+          extraKeys: {"Ctrl-Space": "autocomplete"}
+      }); 
+      $(document).ready(function() {
+        window.location.hash="no-back-button";
+        window.location.hash="Again-No-back-button";
+        window.onhashchange=function(){window.location.hash="no-back-button";}
+        
+        window.onbeforeunload = function () {
+          return false;
+        }
+
+        $("#compilerbtn").on('click', function(e){
+          var data = {};
+          $.each($('#myform').serializeArray(), function(i, field) {
+              data[field.name] = field.value;
+          });
+          data.code = editor.getValue();
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: '/compilecode',
+                data: data,
+                dataType: 'json',
+                success:function(data){
+                  if(data.type == "success")
+                    $('#result').html("Successfully Compiled And Executed");
+                  else
+                    $('#result').html(data.out);
+                },error:function(error){
+                  $('#result').html(error);
+                  console.log(error);
+                }
+            })
+        });
+        $("#saveCode").on('click', function(e){
+          var data = {};
+          data.examname = exam;
+          data.sectionname = section;
+          data.qname = question;
+          data.code = editor.getValue();
+          data.userId = userId;
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: '/Savecode',
+                data: data,
+                dataType: 'json',
+                success:function(data){
+                  $('#result').html("Successfully Saved");
+                },error:function(error){
+                  $('#result').html(error);
+                  console.log(error);
+                }
+            })
+        });
+        $('#changeLanguage').change(function(){
+            var option = this.value;
+            if(option === "C")
+                editor.setOption('mode', "text/x-csrc");
+            else if(option === "C++")
+                editor.setOption('mode', "text/x-c++src");
+            else if(option === "Java")
+                editor.setOption('mode', "text/x-java");
+            else
+                editor.setOption('mode', "text/x-python");
+        }) 
+      });
+  
+    function openCity( evt, index, questionname, problem, input, output, constraints) {
+      if(selectedQuestion != parseInt(index)){
+        selectedQuestion = parseInt(index); 
+        var question = questionname;
+        $.confirm({
+              title: 'Do you want to move to next question?',
+              content: '**Submit Your Code unless it will be gone..',
+              buttons: {
+                  confirm: function () {
+                    document.getElementById("problem").innerHTML = problem;
+                    document.getElementById("inputformat").innerHTML = input;
+                    document.getElementById("outputformat").innerHTML = output;
+                    document.getElementById("constraints").innerHTML = constraints;
+                  
+                    // Get all elements with class="tablinks" and remove the class "active"
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    
+                    editor.setValue('');
+
+                    // Show the current tab, and add an "active" class to the link that opened the tab
+                    evt.path[0].className += " active";
+                  },
+                  cancel: function () {
+                      console.log('canacel');
+                  },
+              }
+          });
+        }
+      }
+
+    $(".panel-left").resizable({
+      handleSelector: ".splitter",
+      resizeHeight: false,
+      resizeWidth: false,
+    });
+
+    $(".panel-top").resizable({
+      handleSelector: ".splitter-horizontal",
+      resizeWidth: false,
+   
+ });
+  </script>
+</body>
+</html>

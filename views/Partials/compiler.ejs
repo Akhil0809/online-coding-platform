@@ -1,0 +1,36 @@
+
+<div class="container">
+    <div class="compiler">
+    <form id="myform" name="myform" method="post" action="/compilecode">
+    <div>
+        <h5>
+            Language : <select id="changeLanguage" name="lang">
+            <option  class="option_class" value="C">C</option>
+            <option class="option_class" value="C++">C++</option>
+            <option class="option_class" value="Java">Java</option>  
+            <option class="option_class" value="Python">Python</option> 
+            </select>
+        </h5>
+    </div>
+
+    <div class="editor1" style="background-color: grey;">
+        <textarea id="editor" name="code"></textarea>
+        <p class="note">*Note: Press Ctrl/Command+Spacebar for autocomplete suggestions (accuracy dependent on connection stability). </p>
+    </div>
+    <br/>
+    Compile With Input : 
+    <input type="radio" checked="checked" name="inputRadio" value="Yes" id="yes" class="static_class" />
+          <label for="yes">Yes &nbsp;</label>
+          <input type="radio" checked="checked" name="inputRadio" value="No" id="no" class="static_class"/>
+          <label for="no">No </label>
+    <br />
+    <div id="extra">
+            <textarea id="inputvalues" cols="84" wrap="physical" rows="4" name="input" class="textboxid4 style"></textarea>
+          </div>
+   <div class="compiler-btn"> 
+        <button class="btn btn-primary" id="compilerbtn" type="button"  name="submit" />Run Code</button>
+        <button class="btn btn-primary pull-right" id="saveCode" type="button" name="saveCode" />Submit Code</button>
+    </div>
+    </form>
+</div>
+</div>

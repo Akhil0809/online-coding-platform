@@ -1,0 +1,117 @@
+<%- include('../Partials/layout.ejs') %>
+<div style="background-color: #f6f6f6">
+    <div class="page-header " style="background-color:white;" xmlns="http://www.w3.org/1999/html">
+        <ul class="breadcrumb">
+            <li><a href="/"><strong>Dashboard</strong></a></li>
+            <li><a href="/section/<%=sname%>"><strong><%= sname%></strong></a></li>
+            <li><a style="color: #424242"><strong><%= data.qname%></strong></a></li>
+        </ul>
+    </div>
+    <div class="container" >
+    <nav class="navbar navbar-default custom-head" style="background-color: white">
+        <ul class="nav navbar-nav">
+            <li class="active"><a >Problem</a></li>
+            <li ><a class="inactive" href="#">Leadership</a></li>
+            <li ><a class="inactive" href="#">Discussions</a></li>
+            <li ><a class="inactive" href="#">See Solution</a></li>
+        </ul>
+    </nav>
+    </div>
+    <div class="container" >
+        <div class="problem-code">
+            <div class="problem-inner" style="background-color: white; color:grey" >
+                <p><%=data.qcode.problem%></p>
+                <p><span>Sample Input </span>
+                    <%=data.qcode.inputformat%>
+                </p>
+                <p><Span>Sample Output </span>
+                    <%=data.qcode.outputformat%><
+                </p>
+                <p><span>Constraints</span>
+                    <%=data.qcode.constraints%></h4>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <%- include('../Partials/compiler.ejs') %>
+    <div class="container" > <div id="resoutput"></div></div>
+</div>
+
+
+
+<%- include('../Partials/layoutfooter.ejs') %>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="/scripts/codemirror/lib/codemirror.js"></script>
+<link href="/scripts/codemirror/lib/codemirror.css" rel="stylesheet"/>
+<script src="/scripts/codemirror/mode/python/python.js"></script>
+<script src="/scripts/codemirror/mode/clike/clike.js"></script>
+<link href="/scripts/codemirror/theme/dracula.css" rel="stylesheet"/>
+<script src="/scripts/codemirror/addon/edit/closetag.js"></script>
+<script src="/scripts/codemirror/addon/edit/closebrackets.js"></script>
+<script src="/scripts/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="/scripts/codemirror/addon/edit/matchtags.js"></script>
+<script src="/scripts/codemirror/addon/hint/show-hint.js"></script>
+<script src="/scripts/codemirror/addon/hint/css-hint.js"></script>
+<link href="/scripts/codemirror/addon/hint/show-hint.css" rel="stylesheet"/>
+<script>
+    $(function(){
+        $(".static_class").click(function(){
+          if($(this).val() === "Yes")
+            $("#extra").show("fast");
+          else
+            $("#extra").hide("fast");
+        });
+      });
+    var editor = CodeMirror.fromTextArea
+    (document.getElementById('editor'),{
+        theme:"dracula",
+        lineNumbers: true,
+        autoCloseTags: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        matchTags: false,
+        extraKeys: {"Ctrl-Space": "autocomplete"}
+    }); 
+    function saveCode(){
+
+    }
+    $(document).ready(function() {
+        $("#compilerbtn").on('click', function(e){
+          var data = {};
+          $.each($('#myform').serializeArray(), function(i, field) {
+              data[field.name] = field.value;
+          });
+          data.code = editor.getValue();
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: '/compilecode',
+                data: data,
+                dataType: 'json',
+                success:function(data){
+                  $('#resoutput').html(data.out);
+                },error:function(error){
+                  $('#resoutput').html(error);
+                  console.log(error);
+                }
+            })
+        });
+        $('#changeLanguage').change(function(){
+            var option = this.value;
+            if(option === "C")
+                editor.setOption('mode', "text/x-csrc");
+            else if(option === "C++")
+                editor.setOption('mode', "text/x-c++src");
+            else if(option === "Java")
+                editor.setOption('mode', "text/x-java");
+            else
+                editor.setOption('mode', "text/x-python");
+        })
+      });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
