@@ -17,9 +17,10 @@ var app = express();
 
 console.log("begin");
 
-var mongoConnection = 'mongodb://localhost:27017/minorproject';
 
-mongoose.connect(mongoConnection, {useNewUrlParser: true});
+
+mongoose.connect('mongodb+srv://Akhil:Jhanvi1998@@cluster0-vxz1d.mongodb.net/miniproject?retryWrites=true&w=majority');
+
 
 
 mongoose.connection.on('connected', function () {
